@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<changeSet id="20160918152401" author="WANGWEIWEI">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="QRTZ_JOB_DETAILS" />
+			</not>
+		</preConditions>
+		<createTable tableName="QRTZ_JOB_DETAILS">
+
+			<column name="SCHED_NAME" type="varchar(120)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_NAME" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_GROUP" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESCRIPTION" type="varchar(250)" />
+			<column name="JOB_CLASS_NAME" type="VARCHAR(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="IS_DURABLE" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="IS_NONCONCURRENT" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="IS_UPDATE_DATA" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REQUESTS_RECOVERY" type="VARCHAR(1)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_DATA" type="BLOB" />
+
+		</createTable>
+		<!-- <createIndex indexName="IDX_SCHED_NAME" tableName="QRTZ_JOB_DETAILS"
+			unique="true">
+			<column name="SCHED_NAME" />
+		</createIndex> -->
+
+		<addPrimaryKey tableName="QRTZ_JOB_DETAILS" columnNames="SCHED_NAME,JOB_NAME,JOB_GROUP" />
+
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,23 @@
+server:
+    port: 9999
+    contextPath: /schedule
+    
+spring:
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:mysql://localhost:3306/quartz_test?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8
+        databaseName:
+        serverName:
+        username: root
+        password: mysql
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+quartz:
+    enabled: true
+
+factoryJobConfig:
+    url: http://10.100.66.109:8090/service/v1/scenario/
+    param: /execute

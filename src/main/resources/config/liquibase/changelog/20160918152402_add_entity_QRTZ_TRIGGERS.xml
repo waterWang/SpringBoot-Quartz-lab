@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<changeSet id="20160918152402" author="WANGWEIWEI">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="QRTZ_TRIGGERS" />
+			</not>
+		</preConditions>
+		<createTable tableName="QRTZ_TRIGGERS">
+
+			<column name="SCHED_NAME" type="varchar(120)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_GROUP" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_NAME" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_GROUP" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESCRIPTION" type="varchar(250)" />
+			<column name="NEXT_FIRE_TIME" type="BIGINT(13)" />
+			<column name="PREV_FIRE_TIME" type="BIGINT(13)" />
+			<column name="PRIORITY" type="INTEGER" />
+
+			<column name="TRIGGER_STATE" type="varchar(16)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_TYPE" type="varchar(8)">
+				<constraints nullable="false" />
+			</column>
+			<column name="START_TIME" type="BIGINT(13)">
+				<constraints nullable="false" />
+			</column>
+			<column name="END_TIME" type="BIGINT(13)" />
+			<column name="CALENDAR_NAME" type="varchar(200)" />
+			<column name="MISFIRE_INSTR" type="SMALLINT(2)" />
+			<column name="JOB_DATA" type="BLOB" />
+		</createTable>
+		<addPrimaryKey tableName="QRTZ_TRIGGERS"
+			columnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" />
+		
+		<createIndex indexName="IDX_JOB_NAME"
+            tableName="QRTZ_TRIGGERS"
+            unique="true">
+            <column name="JOB_NAME" type="varchar(200)"/>
+        </createIndex>
+        
+        <createIndex indexName="IDX_JOB_GROUP"
+            tableName="QRTZ_TRIGGERS"
+            unique="true">
+            <column name="JOB_GROUP" type="varchar(200)"/>
+        </createIndex>
+        
+		<addForeignKeyConstraint
+			constraintName="qrtz_triggers_ibfk_1"
+			referencedTableName="QRTZ_JOB_DETAILS" baseColumnNames="SCHED_NAME, JOB_NAME, JOB_GROUP"
+			baseTableName="QRTZ_TRIGGERS" referencedColumnNames="SCHED_NAME, JOB_NAME, JOB_GROUP" />
+			
+	</changeSet>
+</databaseChangeLog>

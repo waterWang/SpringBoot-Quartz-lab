@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<changeSet id="20160918152403" author="WANGWEIWEI">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="QRTZ_SIMPLE_TRIGGERS" />
+			</not>
+		</preConditions>
+		<createTable tableName="QRTZ_SIMPLE_TRIGGERS">
+
+			<column name="SCHED_NAME" type="varchar(120)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_NAME" type="VARCHAR(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_GROUP" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REPEAT_COUNT" type="BIGINT(7)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REPEAT_INTERVAL" type="BIGINT(12)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TIMES_TRIGGERED" type="BIGINT(10)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="QRTZ_SIMPLE_TRIGGERS"
+			columnNames="SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP" />
+
+		<addForeignKeyConstraint constraintName="qrtz_simple_triggers_ibfk_1"
+			referencedTableName="QRTZ_TRIGGERS" baseColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP"
+			baseTableName="QRTZ_SIMPLE_TRIGGERS" referencedColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" />
+			
+	</changeSet>
+</databaseChangeLog>

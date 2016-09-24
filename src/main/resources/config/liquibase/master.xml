@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <!-- QUARTZ -->
+    
+	<include file="classpath:config/liquibase/changelog/20160918152401_add_entity_QRTZ_JOB_DETAILS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152402_add_entity_QRTZ_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152403_add_entity_QRTZ_SIMPLE_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152404_add_entity_QRTZ_CRON_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152405_add_entity_QRTZ_SIMPROP_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152406_add_entity_QRTZ_BLOB_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152407_add_entity_QRTZ_CALENDARS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152408_add_entity_QRTZ_PAUSED_TRIGGER_GRPS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152409_add_entity_QRTZ_FIRED_TRIGGERS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918152410_add_entity_QRTZ_SCHEDULER_STATE.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/20160918152411_add_entity_QRTZ_LOCKS.xml" relativeToChangelogFile="false"/>
+
+</databaseChangeLog>

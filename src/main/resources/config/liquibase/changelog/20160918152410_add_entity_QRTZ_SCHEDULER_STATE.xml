@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<changeSet id="20160918152410" author="WANGWEIWEI">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="QRTZ_SCHEDULER_STATE" />
+			</not>
+		</preConditions>
+		<createTable tableName="QRTZ_SCHEDULER_STATE">
+
+			<column name="SCHED_NAME" type="varchar(120)">
+				<constraints nullable="false" />
+			</column>
+			<column name="INSTANCE_NAME" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="LAST_CHECKIN_TIME" type="BIGINT(13)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CHECKIN_INTERVAL" type="BIGINT(13)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey tableName="QRTZ_SCHEDULER_STATE"
+			columnNames="SCHED_NAME,INSTANCE_NAME" />
+	</changeSet>
+</databaseChangeLog>

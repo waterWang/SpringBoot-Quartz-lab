@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<changeSet id="20160918152409" author="WANGWEIWEI">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="QRTZ_FIRED_TRIGGERS" />
+			</not>
+		</preConditions>
+		<createTable tableName="QRTZ_FIRED_TRIGGERS">
+
+			<column name="SCHED_NAME" type="varchar(120)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ENTRY_ID" type="VARCHAR(95)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_NAME" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TRIGGER_GROUP" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+			<column name="INSTANCE_NAME" type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="FIRED_TIME" type="BIGINT(13)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SCHED_TIME" type="BIGINT(13)">
+				<constraints nullable="false" />
+			</column>
+			<column name="PRIORITY" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATE" type="varchar(16)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JOB_NAME" type="varchar(200)" />
+			<column name="JOB_GROUP" type="varchar(200)" />
+			<column name="IS_NONCONCURRENT" type="varchar(1)" />
+			<column name="REQUESTS_RECOVERY" type="varchar(1)" />
+		</createTable>
+		<addPrimaryKey tableName="QRTZ_FIRED_TRIGGERS"
+			columnNames="SCHED_NAME,ENTRY_ID" />
+	</changeSet>
+</databaseChangeLog>
