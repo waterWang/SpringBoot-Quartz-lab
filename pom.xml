@@ -18,7 +18,19 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<developers>
+		<developer>
+			<id>001</id>
+			<name>waterWang</name>
+			<email>672684719@qq.com</email>
+		</developer>
 	</developers>
 	<dependencies>
 		<dependency>
@@ -91,20 +103,17 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-		</dependency>
+			</dependency>
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.3.5</version>
-		</dependency>
+			</dependency>
 		<!-- reporting -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
-			<version>4.4.1</version>
-		</dependency>
+			</dependency>
 
 
 	</dependencies>
