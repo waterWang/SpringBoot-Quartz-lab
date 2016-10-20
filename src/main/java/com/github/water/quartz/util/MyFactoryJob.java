@@ -1,4 +1,4 @@
-package com.github.water.quartz.web.rest.v1;
+package com.github.water.quartz.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,10 +10,7 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.github.water.quartz.util.HttpUtil;
 
 /**
  * 实现Job接口，定义具体运行的任务

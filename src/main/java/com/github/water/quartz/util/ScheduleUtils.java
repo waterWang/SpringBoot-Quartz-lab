@@ -199,6 +199,7 @@ public class ScheduleUtils {
 	 * @param jobGroup
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public static TriggerBuilder createTriggerBuilder(String jobName, String jobGroup) {
 		return TriggerBuilder.newTrigger().withIdentity(jobName, jobGroup);
 	}
