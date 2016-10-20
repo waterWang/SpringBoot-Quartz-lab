@@ -5,12 +5,12 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.ContextLoader;
 
 /**
- * 任务工厂类,非同步
- * @author Beacher Han(dirk_han@126.com)
- * @since  2016/3/31
+ * @Author : water
+ * @Date : 2016年9月11日
+ * @Desc : 任务工厂类,非同步
+ * @version: V1.0
  */
 public class JobFactory implements Job {
 

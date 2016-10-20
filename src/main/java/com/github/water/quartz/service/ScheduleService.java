@@ -31,9 +31,9 @@ import com.github.water.quartz.dto.ResultDTO;
 import com.github.water.quartz.dto.ScheduleDTO;
 import com.github.water.quartz.dto.ScheduleJob;
 import com.github.water.quartz.exeption.ScheduleException;
+import com.github.water.quartz.util.MyFactoryJob;
 import com.github.water.quartz.util.ScheduleUtils;
 import com.github.water.quartz.util.constant.Constants;
-import com.github.water.quartz.web.rest.v1.MyFactoryJob;
 
 /**
  * @Author : water

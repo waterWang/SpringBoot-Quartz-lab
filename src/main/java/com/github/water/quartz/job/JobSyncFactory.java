@@ -2,18 +2,16 @@ package com.github.water.quartz.job;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
-import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.ContextLoader;
 
 /**
- * 同步的任务工厂类
- * 
- * @author Beacher Han(dirk_han@126.com)
- * @since 2016/3/31
+ * @Author : water
+ * @Date : 2016年9月11日
+ * @Desc : 同步的任务工厂类
+ * @version: V1.0
  */
 @DisallowConcurrentExecution
 public class JobSyncFactory implements Job {
@@ -28,7 +26,7 @@ public class JobSyncFactory implements Job {
 	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 		try {
 			LOG.info("JobSyncFactory execute");
-			JobDataMap mergedJobDataMap = jobExecutionContext.getMergedJobDataMap();
+//			JobDataMap mergedJobDataMap = jobExecutionContext.getMergedJobDataMap();
 //			ScheduleJob scheduleJob = (ScheduleJob) mergedJobDataMap.get(Constants.JOB_PARAM_KEY);
 //			System.out.println("jobName:" + scheduleJob.getJobName() + "  " + scheduleJob);
 //			ScenesService scenesService = ContextLoader.getCurrentWebApplicationContext().getBean(ScenesService.class);
