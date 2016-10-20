@@ -1,1 +1,17 @@
-/target/
+target
+build
+output
+
+
+#jenv
+.java-version
+
+.DS_Store
+.extract
+.site-content/
+
+#eclipse files
+.project
+.classpath
+.settings/
+*/src/main/java/META-INF/
