@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
@@ -23,6 +25,7 @@ import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -47,7 +50,10 @@ import com.github.water.quartz.util.constant.Constants;
 public class ScheduleService {
 
 	private final Logger LOG = LoggerFactory.getLogger(ScheduleService.class);
-	
+
+	@Resource
+	private SchedulerFactoryBean schedulerFactoryBean;
+
 	@Value("${factoryJobConfig.param}")
 	private String factoryJobConfigParam;
 
@@ -58,6 +64,67 @@ public class ScheduleService {
 	 * @param scheduleDTO
 	 * @return
 	 */
+	/*@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ResultDTO addJob(ScheduleDTO scheduleDTO) {
+
+		System.out.println("------------------" + factoryJobConfigUrl);
+		ResultDTO resultDTO = new ResultDTO();
+		String triggerType = scheduleDTO.getTriggerType();
+
+		if (!StringUtils.isEmpty(triggerType)) {
+
+			String jobName = scheduleDTO.getScenarioId();
+			String jobGroup = scheduleDTO.getJobGroup();
+			Map<String, Object> jobDataMap = scheduleDTO.getJobDataMap();
+
+			TriggerBuilder triggerBuilder = ScheduleUtils.createTriggerBuilder(jobName, jobGroup);
+			JobBuilder jobBuilder = ScheduleUtils.createJobBuilder(MyFactoryJob.class, jobName, jobGroup);
+			JobDetail jobDetail = ScheduleUtils.createJobDetail(jobBuilder, jobDataMap);
+
+			jobDetail.getJobDataMap().put("factoryJobConfigUrl", factoryJobConfigUrl);
+			jobDetail.getJobDataMap().put("factoryJobConfigParam", factoryJobConfigParam);
+			Scheduler scheduler;
+			try {
+				scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+				if (triggerType.equalsIgnoreCase(Constants.QZ_CRON_TRIGGER)) {
+
+					String cronExpression = scheduleDTO.getCronExpression();
+					CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression);
+					CronTrigger cronTrigger = (CronTrigger) triggerBuilder
+							.withSchedule(scheduleBuilder.withMisfireHandlingInstructionFireAndProceed()).build();
+
+					scheduler.scheduleJob(jobDetail, cronTrigger);
+
+				} else if (triggerType.equalsIgnoreCase(Constants.QZ_SIMPLE_TRIGGER)) {
+
+					Date startTime = scheduleDTO.getStartTime();
+					Date endTime = scheduleDTO.getEndTime();
+					int repeatCount = scheduleDTO.getRepeatCount();
+					int repeatInterval = scheduleDTO.getRepeatInterval();
+
+					SimpleTrigger simpleTrigger = ScheduleUtils.createSimpleTrigger(triggerBuilder, startTime, endTime,
+							repeatCount, repeatInterval);
+					scheduler.scheduleJob(jobDetail, simpleTrigger);
+
+				}
+				scheduler.start();
+				resultDTO.setResultMessage(Constants.RESULT_SUCCESS_MSG);
+				resultDTO.setResultCode(Constants.RESULT_SUCCESS_CODE);
+			} catch (SchedulerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else {
+			resultDTO.setResultMessage(Constants.RESULT_EXCEPTION_MSG);
+			resultDTO.setResultCode(Constants.RESULT_EXCEPTION_CODE);
+		}
+
+		return resultDTO;
+	}*/
+	
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ResultDTO addJob(ScheduleDTO scheduleDTO) {
 
@@ -74,7 +141,7 @@ public class ScheduleService {
 			TriggerBuilder triggerBuilder = ScheduleUtils.createTriggerBuilder(jobName, jobGroup);
 			JobBuilder jobBuilder = ScheduleUtils.createJobBuilder(MyFactoryJob.class, jobName, jobGroup);
 			JobDetail jobDetail = ScheduleUtils.createJobDetail(jobBuilder, jobDataMap);
-			
+
 			jobDetail.getJobDataMap().put("factoryJobConfigUrl", factoryJobConfigUrl);
 			jobDetail.getJobDataMap().put("factoryJobConfigParam", factoryJobConfigParam);
 			Scheduler scheduler;
@@ -177,7 +244,7 @@ public class ScheduleService {
 						job.setStartTime(startTime);
 						job.setEndTime(entTime);
 						job.setRepeatCount(repeatCount);
-						job.setRepeatInterval(repeatInterval / 1000); 
+						job.setRepeatInterval(repeatInterval / 1000);
 						job.setTriggerType(Constants.QZ_SIMPLE_TRIGGER);
 					}
 

@@ -60,7 +60,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "添加调度任务",  notes = "给某个场景添加调度任务<br><br><b>@author 王伟伟</b>" )
+	@ApiOperation(value = "添加调度任务",  notes = "给某个场景添加调度任务<br><br><b>@author water</b>" )
 	public ResponseEntity<ResultDTO> addSchedule(@ApiParam(value = "调度DTO<br><br> 必填字段：scenarioId(即jobName) ，jobGroup ，triggerType（触发器类型SimpleTrigger 还是 CronTrigger）<br><br> ") @RequestBody ScheduleDTO scheduleDTO)
 			throws ScheduleException {
 
@@ -82,7 +82,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation( value = "删除job",  notes = "删除job<br>@author 王伟伟")
+	@ApiOperation( value = "删除job",  notes = "删除job<br>@author water")
 	public ResponseEntity<ResultDTO> deleteJob(
 			@ApiParam(value = "job名称", required = true) @RequestParam(value = "jobName") String jobName,
 			@ApiParam(value = "job组", required = true) @RequestParam(value = "jobGroup") String jobGroup)
@@ -112,7 +112,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/runOnce", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "立即运行，只会运行一次，方便测试时用",  notes = "立即运行，只会运行一次，方便测试时用<br>@author 王伟伟")
+	@ApiOperation(value = "立即运行，只会运行一次，方便测试时用",  notes = "立即运行，只会运行一次，方便测试时用<br>@author water")
 	public ResponseEntity<?> runOnceJob(
 			@ApiParam(value = "job名称", required = true) @RequestParam(value = "jobName", required = true) String jobName,
 			@ApiParam(value = "job组", required = true) @RequestParam(value = "jobGroup", required = true) String jobGroup)
@@ -140,7 +140,7 @@ public class ScheduleResource {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/getJobListInPlan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "获取计划中的任务列表", response = Void.class, notes = "获取计划中的任务列表<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "GET", value = "获取计划中的任务列表", response = Void.class, notes = "获取计划中的任务列表<br>@author water")
 	public ResponseEntity<?> getJobListInPlan() throws Exception {
 
 		Scheduler scheduler = null;
@@ -163,7 +163,7 @@ public class ScheduleResource {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/getJobListByStatus", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "根据状态获取job列表", response = Void.class, notes = "根据状态获取job列表<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "GET", value = "根据状态获取job列表", response = Void.class, notes = "根据状态获取job列表<br>@author water")
 	public ResponseEntity<?> getJobListByStatus(
 			@ApiParam(value = "job运行状态（NONE, NORMAL, PAUSED, COMPLETE, ERROR, BLOCKED）", required = true) @RequestParam(value = "jobStatus", required = true) String jobStatus)
 			throws Exception {
@@ -188,7 +188,7 @@ public class ScheduleResource {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/getJobListInRunning", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "获取运行中的任务列表", response = Void.class, notes = "获取运行中的任务列表<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "GET", value = "获取运行中的任务列表", response = Void.class, notes = "获取运行中的任务列表<br>@author water")
 	public ResponseEntity<?> getJobListInRunning() throws Exception {
 
 		Scheduler scheduler = null;
@@ -213,7 +213,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/pauseJob", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "暂停定时任务", response = Void.class, notes = "暂停定时任务<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "GET", value = "暂停定时任务", response = Void.class, notes = "暂停定时任务<br>@author water")
 	public ResponseEntity<?> pauseJob(
 			@ApiParam(value = "job名称", required = true) @RequestParam(value = "jobName", required = true) String jobName,
 			@ApiParam(value = "job组", required = true) @RequestParam(value = "jobGroup", required = true) String jobGroup)
@@ -243,7 +243,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/resumeJob", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "GET", value = "恢复定时任务", response = Void.class, notes = "恢复定时任务<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "GET", value = "恢复定时任务", response = Void.class, notes = "恢复定时任务<br>@author water")
 	public ResponseEntity<?> resumeJob(
 			@ApiParam(value = "job名称", required = true) @RequestParam(value = "jobName", required = true) String jobName,
 			@ApiParam(value = "job组", required = true) @RequestParam(value = "jobGroup", required = true) String jobGroup)
@@ -270,7 +270,7 @@ public class ScheduleResource {
 	 * @throws ScheduleException
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(httpMethod = "PUT", value = "更新job", response = Void.class, notes = "更新job<br>@author 王伟伟")
+	@ApiOperation(httpMethod = "PUT", value = "更新job", response = Void.class, notes = "更新job<br>@author water")
 	public ResponseEntity<?> update(@ApiParam(value = "调度DTO") @RequestBody ScheduleDTO scheduleDTO)
 			throws ScheduleException {
 

@@ -10,6 +10,7 @@ public class Constants {
 	
 	
 	public static final String SPRING_PROFILE_FAST = "fast";
+	public static final String SPRING_PROFILE_TEST = "test";
 	
 	public static final String JOB_PARAM_KEY = "jobParam";
 	
